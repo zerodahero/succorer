@@ -121,7 +121,15 @@ export default {
       this.notifyCron()
     },
     getTimerTime () {
-      return (this.interval * 1000 * 60)
+      if (this.variability === 0) {
+        return (this.interval * 1000 * 60)
+      }
+
+      let max = this.interval + this.variability
+      let min = this.interval - this.variability
+      let time = Math.floor(Math.random() * (max - min + 1)) + min
+
+      return (time * 1000 * 60)
     }
   },
   created () {
