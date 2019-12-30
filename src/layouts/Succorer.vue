@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+    <q-header>
       <q-bar class="q-electron-drag">
         <q-icon name="scatter_plot" />
 
@@ -136,3 +136,8 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus">
+body
+  background-color $primary
+</style>
