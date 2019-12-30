@@ -1,9 +1,9 @@
 {
-  "name": "rachis",
+  "name": "succorer",
   "version": "0.0.1",
   "description": "Periodic reminder app",
-  "productName": "Rachis",
-  "cordovaId": "org.cordova.quasar.app",
+  "productName": "Succorer",
+  "cordovaId": "",
   "capacitorId": "",
   "author": "Zack Teska <zerodahero@gmail.com>",
   "private": true,

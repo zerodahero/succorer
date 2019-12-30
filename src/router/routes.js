@@ -2,7 +2,7 @@
 const routes = [
   {
     path: '/',
-    component: () => import('layouts/Rachis.vue'),
+    component: () => import('layouts/Succorer.vue'),
     children: [
       { path: '', component: () => import('pages/Index.vue') }
     ]

@@ -4,7 +4,7 @@
     "minify_build": "zopfli",
     "cordova": {
       "background_color": "#000074",
-      "splashscreen_type": "pure"
+      "splashscreen_type": "generate"
     },
     "build_always": true,
     "__internal": {
@@ -15,7 +15,7 @@
       },
       "build": {
         "electron": {
-          "iconHash": "2763f5ae9a021365a10742759f59c200"
+          "iconHash": "be000eafb00af276c464eaa333f04ff4"
         }
       }
     }

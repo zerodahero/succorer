@@ -6,7 +6,7 @@
 
         <q-space />
 
-        <div>Rachis</div>
+        <div>Succorer</div>
 
         <q-space />
 

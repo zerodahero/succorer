@@ -1,6 +1,6 @@
-# Rachis (rachis)
+# Succorer
 
-Periodic reminder app
+A periodic reminder app.
 
 ## Install the dependencies
 ```bash
