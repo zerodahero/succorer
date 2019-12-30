@@ -23,7 +23,8 @@ function createWindow () {
       // (where its default value is "true")
       // More info: https://quasar.dev/quasar-cli/developing-electron-apps/node-integration
       nodeIntegration: true
-    }
+    },
+    frame: false
   })
 
   mainWindow.loadURL(process.env.APP_URL)

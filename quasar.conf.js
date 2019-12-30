@@ -45,7 +45,9 @@ module.exports = function (ctx) {
       directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: [
+        'LocalStorage'
+      ]
     },
 
     // https://quasar.dev/quasar-cli/cli-documentation/supporting-ie
@@ -154,7 +156,7 @@ module.exports = function (ctx) {
         // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
 
         // OS X / Mac App Store
-        // appBundleId: '',
+        appBundleId: 'com.zerodahero.rachis'
         // appCategoryType: '',
         // osxSign: '',
         // protocol: 'myapp://path',
@@ -166,7 +168,7 @@ module.exports = function (ctx) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'rachis'
+        appId: 'com.zerodahero.rachis'
       },
 
       // keep in sync with /src-electron/main-process/electron-main

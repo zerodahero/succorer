@@ -1,7 +1,20 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
-      <q-toolbar>
+      <q-bar class="q-electron-drag">
+        <q-icon name="scatter_plot" />
+
+        <q-space />
+
+        <div>Rachis</div>
+
+        <q-space />
+
+        <q-btn dense flat icon="minimize" @click="minimize" />
+        <!-- <q-btn dense flat icon="crop_square" @click="maximize" /> -->
+        <q-btn dense flat icon="close" @click="closeApp" />
+      </q-bar>
+      <!-- <q-toolbar class="q-electron-drag"> -->
         <!-- <q-btn
           flat
           dense
@@ -11,12 +24,12 @@
           aria-label="Menu"
         /> -->
 
-        <q-toolbar-title>
+        <!-- <q-toolbar-title>
           Rachis
-        </q-toolbar-title>
+        </q-toolbar-title> -->
 
         <!-- <div>Quasar v{{ $q.version }}</div> -->
-      </q-toolbar>
+      <!-- </q-toolbar> -->
     </q-header>
 
     <!-- <q-drawer
@@ -95,8 +108,30 @@ export default {
   name: 'Rachis',
 
   data () {
-    return {
-      // leftDrawerOpen: false
+    return {}
+  },
+
+  methods: {
+    minimize () {
+      if (process.env.MODE === 'electron') {
+        this.$q.electron.remote.BrowserWindow.getFocusedWindow().minimize()
+      }
+    },
+    // maximize () {
+    //   if (process.env.MODE === 'electron') {
+    //     const win = this.$q.electron.remote.BrowserWindow.getFocusedWindow()
+
+    //     if (win.isMaximized()) {
+    //       win.unmaximize()
+    //     } else {
+    //       win.maximize()
+    //     }
+    //   }
+    // },
+    closeApp () {
+      if (process.env.MODE === 'electron') {
+        this.$q.electron.remote.BrowserWindow.getFocusedWindow().close()
+      }
     }
   }
 }

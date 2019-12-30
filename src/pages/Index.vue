@@ -83,16 +83,23 @@ export default {
   },
   watch: {
     interval (val, oldVal) {
+      this.saveLocalKey('interval', val)
       this.restartTimer()
     },
     variability (val, oldVal) {
+      this.saveLocalKey('variability', val)
       this.restartTimer()
     }
   },
   methods: {
+    saveLocalKey (key, val) {
+      if (Number.isInteger(val)) {
+        this.$q.localStorage.set(key, val)
+      }
+    },
     notify () {
-      let myNotification = new Notification('Title', {
-        body: 'Lorem Ipsum Dolor Sit Amet'
+      let myNotification = new Notification('Posture', {
+        body: 'Don\'t be a slouchy bench.'
       })
 
       myNotification.onclick = () => {
@@ -133,6 +140,13 @@ export default {
     }
   },
   created () {
+    if (this.$q.localStorage.has('interval')) {
+      this.interval = this.$q.localStorage.getItem('interval')
+    }
+    if (this.$q.localStorage.has('variability')) {
+      this.variability = this.$q.localStorage.getItem('variability')
+    }
+
     this.notifyCron()
   }
 }
