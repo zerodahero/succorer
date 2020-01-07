@@ -105,7 +105,7 @@
 
 <script>
 export default {
-  name: 'Rachis',
+  name: 'Succorer',
 
   data () {
     return {}

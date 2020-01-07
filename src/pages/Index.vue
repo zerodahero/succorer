@@ -67,7 +67,8 @@ export default {
       timer: null,
       interval: 20,
       variability: 0,
-      isRunning: false
+      isRunning: false,
+      isIdle: false
     }
   },
   filters: {
@@ -109,10 +110,16 @@ export default {
     notifyCron () {
       clearTimeout(this.timer)
       this.isRunning = true
-      this.timer = setTimeout(() => {
-        this.notify()
-        this.notifyCron()
-      }, this.getTimerTime())
+      if (this.isActive()) {
+        this.timer = setTimeout(() => {
+          this.notify()
+          this.notifyCron()
+        }, this.getTimerTime())
+      } else {
+        this.timer = setTimeout(() => {
+          this.notifyCron()
+        }, this.getTimerTime(0.5))
+      }
     },
     restartTimer () {
       this.stopTimer()
@@ -127,7 +134,7 @@ export default {
     startTimer () {
       this.notifyCron()
     },
-    getTimerTime () {
+    getTimerTime (adjustment = 1) {
       if (this.variability === 0) {
         return (this.interval * 1000 * 60)
       }
@@ -136,7 +143,10 @@ export default {
       let min = this.interval - this.variability
       let time = Math.floor(Math.random() * (max - min + 1)) + min
 
-      return (time * 1000 * 60)
+      return (time * 1000 * 60) * adjustment
+    },
+    isActive () {
+      return this.$q.electron.remote.powerMonitor.getSystemIdleState(1) === 'active'
     }
   },
   created () {
