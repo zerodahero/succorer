@@ -4,7 +4,8 @@ const routes = [
     path: '/',
     component: () => import('layouts/Succorer.vue'),
     children: [
-      { path: '', component: () => import('pages/Index.vue') }
+      { path: '', name: 'index', component: () => import('pages/Index.vue') },
+      { path: '/settings', name: 'settings', component: () => import('pages/Settings.vue') }
     ]
   }
 ]

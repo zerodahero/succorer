@@ -1,6 +1,7 @@
 <template>
   <q-page padding>
-    <q-card class="q-pa-lg q-ma-lg">
+    <q-card class="q-pa-lg main-card" flat>
+      <q-btn icon="settings" :to="{name: 'settings'}" flat class="float-right" />
 
       <q-input
         v-model.number="interval"
@@ -59,6 +60,8 @@
 
 <script>
 let pluralize = require('pluralize')
+import insult from 'src/dictionaries/insults'
+import message from 'src/dictionaries/messages'
 
 export default {
   name: 'Index',
@@ -68,7 +71,10 @@ export default {
       interval: 20,
       variability: 0,
       isRunning: false,
-      isIdle: false
+      isIdle: false,
+      polarity: ['affirmative'],
+      topic: 'Posture',
+      insults: false
     }
   },
   filters: {
@@ -99,8 +105,8 @@ export default {
       }
     },
     notify () {
-      let myNotification = new Notification('Posture', {
-        body: 'Don\'t be a slouchy bench.'
+      let myNotification = new Notification(this.getTopic(), {
+        body: this.getMessage()
       })
 
       myNotification.onclick = () => {
@@ -147,17 +153,40 @@ export default {
     },
     isActive () {
       return this.$q.electron.remote.powerMonitor.getSystemIdleState(1) === 'active'
+    },
+    getTopic () {
+      return this.topic
+    },
+    getMessage () {
+      return message(this.getTopic(), this.polarity) + this.getInsult()
+    },
+    getInsult () {
+      if (!this.insults) {
+        return ''
+      }
+
+      return insult()
     }
   },
   created () {
-    if (this.$q.localStorage.has('interval')) {
-      this.interval = this.$q.localStorage.getItem('interval')
-    }
-    if (this.$q.localStorage.has('variability')) {
-      this.variability = this.$q.localStorage.getItem('variability')
-    }
+    ['interval', 'variability', 'topic', 'insults', 'polarity'].forEach(element => {
+      if (this.$q.localStorage.has(element)) {
+        this[element] = this.$q.localStorage.getItem(element)
+      }
+    })
+    // if (this.$q.localStorage.has('interval')) {
+    //   this.interval = this.$q.localStorage.getItem('interval')
+    // }
+    // if (this.$q.localStorage.has('variability')) {
+    //   this.variability = this.$q.localStorage.getItem('variability')
+    // }
 
     this.notifyCron()
   }
 }
 </script>
+
+<style lang="stylus">
+.main-card
+  background-color rgba(255, 255, 255, 1)
+</style>
