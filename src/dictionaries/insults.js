@@ -4,9 +4,12 @@ const insults = [
   'muffin face',
   'sloppy penguin',
   'cough drop',
-  'left handed revolving door',
+  'left-handed revolving door',
   'broken crane',
-  'irregular coffee filter'
+  'irregular coffee filter',
+  'piece of flavorless bubble gum',
+  'poo',
+  'saggy ankle sock'
 ]
 
 export default function (prefix = 'you', leadingComma = true) {

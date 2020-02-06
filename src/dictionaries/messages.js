@@ -9,7 +9,9 @@ const messages = {
   ],
   negative: [
     'you better not be sucking at {TOPIC}',
-    'don\'t be bad at {TOPIC}'
+    'don\'t be bad at {TOPIC}',
+    'try not to be so terrible at {TOPIC}',
+    'others do the {TOPIC} better than you'
   ]
 }
 

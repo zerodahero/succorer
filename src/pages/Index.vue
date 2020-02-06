@@ -60,8 +60,8 @@
 
 <script>
 let pluralize = require('pluralize')
-import insult from 'src/dictionaries/insults'
-import message from 'src/dictionaries/messages'
+import randomInsult from 'src/dictionaries/insults'
+import randomMessage from 'src/dictionaries/messages'
 
 export default {
   name: 'Index',
@@ -158,14 +158,15 @@ export default {
       return this.topic
     },
     getMessage () {
-      return message(this.getTopic(), this.polarity) + this.getInsult()
+      let msg = randomMessage(this.getTopic(), this.polarity) + this.getInsult()
+      return msg.charAt(0).toUpperCase() + msg.slice(1)
     },
     getInsult () {
       if (!this.insults) {
         return ''
       }
 
-      return insult()
+      return randomInsult()
     }
   },
   created () {
