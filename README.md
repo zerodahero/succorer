@@ -2,6 +2,8 @@
 
 A periodic reminder app. Built using [Quasar](https://quasar.dev).
 
+This is, hopefully, a tool that helps "furnish relief". [See definition](https://www.merriam-webster.com/dictionary/succorer).
+
 ## Installation
 
 ### MacOS
